@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply to Tutor | Unbound Academics — Houston Tutoring</title>
+<meta name="description" content="Apply to join the Unbound Academics tutor network in Houston, TX.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo"><img src="logo.svg" alt="" class="logo-mark">Unbound <em>Academics</em></a>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="subjects.html">Subjects</a></li>
+      <li><a href="tutors.html">Tutors</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Free Consult</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero" style="padding:84px 0 96px;">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Join Our Team</span>
+      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Apply to <span class="hl">tutor.</span></h1>
+      <p class="lead">Tell us about your background and attach your resume. We review every application within 3 business days.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap" style="max-width:700px;">
+    <!-- Formspree: replace YOUR_TUTOR_FORM_ID after claiming the form at formspree.io (see setup link provided separately). File uploads require enctype="multipart/form-data", already set below. -->
+    <form action="https://formspree.io/f/YOUR_TUTOR_FORM_ID" method="POST" enctype="multipart/form-data" class="card rv" style="display:grid;gap:18px;">
+      <input type="hidden" name="_subject" value="New Tutor Application">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" class="form-row">
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Full name</label><input type="text" name="applicant_name" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Email</label><input type="email" name="email" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" class="form-row">
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Phone</label><input type="tel" name="phone" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Zip code</label><input type="text" name="zip" inputmode="numeric" placeholder="77002" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+      </div>
+
+      <div>
+        <label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:10px;">Subjects &amp; grade levels you can teach</label>
+        <div style="border:1.5px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;">
+          <div style="display:grid;grid-template-columns:150px repeat(3,1fr);gap:8px 14px;min-width:520px;">
+            <span></span>
+            <span style="font-size:.76rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.03em;text-align:center;">Elementary<br>(K–5)</span>
+            <span style="font-size:.76rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.03em;text-align:center;">Middle School<br>(6–8)</span>
+            <span style="font-size:.76rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.03em;text-align:center;">High School<br>(9–12)</span>
+
+            <span style="font-size:.92rem;font-weight:600;align-self:center;">Math</span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Math - Elementary (K-5)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Math - Middle School (6-8)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Math - High School (9-12)"></span>
+
+            <span style="font-size:.92rem;font-weight:600;align-self:center;">Reading &amp; Writing</span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Reading & Writing - Elementary (K-5)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Reading & Writing - Middle School (6-8)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Reading & Writing - High School (9-12)"></span>
+
+            <span style="font-size:.92rem;font-weight:600;align-self:center;">Science</span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Science - Elementary (K-5)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Science - Middle School (6-8)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="Science - High School (9-12)"></span>
+
+            <span style="font-size:.92rem;font-weight:600;align-self:center;">History &amp; Social Studies</span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="History & Social Studies - Elementary (K-5)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="History & Social Studies - Middle School (6-8)"></span>
+            <span style="text-align:center;"><input type="checkbox" name="subjects" value="History & Social Studies - High School (9-12)"></span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:10px;">Test prep &amp; specialty areas</label>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 16px;padding:16px;border:1.5px solid var(--line);border-radius:10px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="SAT Prep"> SAT Prep</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="ACT Prep"> ACT Prep</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="STAAR Test Prep"> STAAR Test Prep</label>
+        </div>
+
+        <label style="font-weight:700;font-size:.85rem;display:block;margin:16px 0 10px;">ISEE levels</label>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 16px;padding:16px;border:1.5px solid var(--line);border-radius:10px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="ISEE Primary (Gr. 2-4)"> ISEE Primary (Gr. 2–4)</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="ISEE Lower Level (Gr. 5-6)"> ISEE Lower Level (Gr. 5–6)</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="ISEE Middle Level (Gr. 7-8)"> ISEE Middle Level (Gr. 7–8)</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="ISEE Upper Level (Gr. 9-12)"> ISEE Upper Level (Gr. 9–12)</label>
+        </div>
+
+        <label style="font-weight:700;font-size:.85rem;display:block;margin:16px 0 10px;">AP courses</label>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 16px;padding:16px;border:1.5px solid var(--line);border-radius:10px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Calculus AB"> AP Calculus AB</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Calculus BC"> AP Calculus BC</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Statistics"> AP Statistics</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Biology"> AP Biology</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Chemistry"> AP Chemistry</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Physics"> AP Physics</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Environmental Science"> AP Environmental Science</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP English Language"> AP English Language</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP English Literature"> AP English Literature</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP US History"> AP US History</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP World History"> AP World History</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Psychology"> AP Psychology</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Computer Science"> AP Computer Science</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Economics"> AP Economics</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:400;"><input type="checkbox" name="subjects" value="AP Spanish"> AP Spanish</label>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" class="form-row">
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Years of tutoring/teaching experience</label><select name="experience" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff;"><option value="">Select…</option><option>Less than 1 year</option><option>1–2 years</option><option>3–5 years</option><option>5+ years</option></select></div>
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Preferred format</label><select name="format" style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff;"><option>In person (Houston area)</option><option>Online</option><option>Either works</option></select></div>
+      </div>
+
+      <div>
+        <label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:10px;">Weekly availability</label>
+        <div style="border:1.5px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:10px;">
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;font-size:.78rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.04em;">
+            <span>Day</span><span>Available</span><span>From</span><span>To</span>
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Monday</span><input type="checkbox" name="avail_monday_enabled" value="yes"><input type="time" name="avail_monday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_monday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Tuesday</span><input type="checkbox" name="avail_tuesday_enabled" value="yes"><input type="time" name="avail_tuesday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_tuesday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Wednesday</span><input type="checkbox" name="avail_wednesday_enabled" value="yes"><input type="time" name="avail_wednesday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_wednesday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Thursday</span><input type="checkbox" name="avail_thursday_enabled" value="yes"><input type="time" name="avail_thursday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_thursday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Friday</span><input type="checkbox" name="avail_friday_enabled" value="yes"><input type="time" name="avail_friday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_friday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Saturday</span><input type="checkbox" name="avail_saturday_enabled" value="yes"><input type="time" name="avail_saturday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_saturday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:110px 90px 1fr 1fr;gap:10px;align-items:center;">
+            <span style="font-size:.92rem;">Sunday</span><input type="checkbox" name="avail_sunday_enabled" value="yes"><input type="time" name="avail_sunday_from" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;"><input type="time" name="avail_sunday_to" style="width:100%;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;">
+          </div>
+        </div>
+      </div>
+
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Resume</label><input type="file" name="resume" accept=".pdf,.doc,.docx" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff;"></div>
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Tell us about your teaching style and background</label><textarea name="message" rows="4" placeholder="Credentials, subjects you specialize in, why you want to tutor with Unbound…" style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></textarea></div>
+      <button type="submit" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Submit Application →</button>
+      <p style="font-size:.85rem;text-align:center;color:var(--gray);">All applicants complete a background check and live teaching evaluation before joining.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo">Unbound <em>Academics</em></a>
+        <p style="margin-top:16px; font-size:0.9rem;">Local tutoring for Houston-area students. In person and online.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="subjects.html">Subjects</a></li>
+          <li><a href="tutors.html">Our Tutors</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="apply.html">Apply to Tutor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@unboundacademics.com">hello@unboundacademics.com</a></li>
+          <li>Houston, TX</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Unbound Academics. All rights reserved.</span>
+      <span>Proudly serving Greater Houston.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
