@@ -79,7 +79,15 @@ header { position:sticky; top:0; z-index:100; background:rgba(18,61,44,0.92); ba
 
 /* ---------- SECTIONS ---------- */
 section { padding:96px 0; }
-#book { scroll-margin-top:90px; }
+#book, #math, #reading-writing, #science, #history, #test-prep, #isee, #ap-courses { scroll-margin-top:90px; }
+
+.subject-nav { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+.subject-nav a {
+  background:var(--white); border:1.5px solid var(--line); color:var(--ink);
+  font-weight:700; font-size:0.92rem; padding:12px 22px; border-radius:999px;
+  text-decoration:none; transition:border-color .15s, color .15s, background .15s;
+}
+.subject-nav a:hover { border-color:var(--gold); color:var(--brass); background:rgba(217,192,138,.08); }
 .sec-head { max-width:660px; margin-bottom:56px; }
 .kicker { display:inline-block; font-size:0.75rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:var(--brass); margin-bottom:14px; }
 .sec-head h2 { font-size:clamp(1.9rem,3.6vw,2.7rem); font-weight:700; }
