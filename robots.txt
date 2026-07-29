@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://es183-dot.github.io/Unbound_Academics/sitemap.xml
