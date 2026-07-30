@@ -37,8 +37,23 @@
     "addressRegion": "TX",
     "addressCountry": "US"
   },
-  "areaServed": ["Houston", "Katy", "Sugar Land", "Cypress", "The Woodlands"],
-  "priceRange": "$75-$960"
+  "areaServed": [
+    {"@type": "City", "name": "Houston"},
+    {"@type": "City", "name": "Katy"},
+    {"@type": "City", "name": "Sugar Land"},
+    {"@type": "City", "name": "Cypress"},
+    {"@type": "City", "name": "The Woodlands"}
+  ],
+  "priceRange": "$75-$960",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Tutoring Packages",
+    "itemListElement": [
+      {"@type": "Offer", "name": "Single Session", "price": "75", "priceCurrency": "USD", "description": "One hour of one-on-one tutoring"},
+      {"@type": "Offer", "name": "8-Session Package", "price": "560", "priceCurrency": "USD", "description": "8 one-hour tutoring sessions, $70/hour"},
+      {"@type": "Offer", "name": "Semester Plan", "price": "960", "priceCurrency": "USD", "description": "16 one-hour tutoring sessions, $60/hour"}
+    ]
+  }
 }
 </script>
 </head>
