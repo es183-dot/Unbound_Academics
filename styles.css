@@ -125,9 +125,8 @@ section { padding:96px 0; }
 .chip {
   background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); color:#D3E3D9;
   border-radius:999px; padding:11px 22px; font-size:0.94rem; font-weight:500;
-  transition:border-color .15s, color .15s, background .15s;
+  cursor:default;
 }
-.chip:hover { border-color:var(--gold); color:var(--gold-bright); background:rgba(201,166,72,.08); }
 
 /* testimonials */
 .quote { background:var(--white); border-radius:18px; padding:34px; border:1px solid var(--line); position:relative; }
