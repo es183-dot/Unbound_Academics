@@ -2,34 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://formspree.io; connect-src 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Tutors | Unbound Academics — Houston Tutoring</title>
-<meta name="description" content="Meet our vetted Houston-area tutors: background-checked and evaluated before their first session.">
+<title>Tutor Login | Unbound Academics</title>
+<meta name="description" content="Log in to your Unbound Academics tutor account.">
+<meta name="robots" content="noindex,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="canonical" href="https://unboundacademics.com/tutors.html">
+<link rel="canonical" href="https://unboundacademics.com/tutor-login.html">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Unbound Academics">
-<meta property="og:title" content="Our Tutors | Unbound Academics — Houston Tutoring">
-<meta property="og:description" content="Meet our vetted Houston-area tutors: background-checked and evaluated before their first session.">
-<meta property="og:url" content="https://unboundacademics.com/tutors.html">
-<meta property="og:image" content="https://unboundacademics.com/logo.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Our Tutors | Unbound Academics — Houston Tutoring">
-<meta name="twitter:description" content="Meet our vetted Houston-area tutors: background-checked and evaluated before their first session.">
-<meta name="twitter:image" content="https://unboundacademics.com/logo.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://unboundacademics.com/"},
-    {"@type": "ListItem", "position": 2, "name": "Our Team", "item": "https://unboundacademics.com/tutors.html"}
+    {"@type": "ListItem", "position": 2, "name": "Tutor Login", "item": "https://unboundacademics.com/tutor-login.html"}
   ]
 }
 </script>
@@ -54,75 +45,25 @@
 <div class="hero" style="padding:84px 0 96px;">
   <div class="wrap" style="grid-template-columns:1fr;">
     <div>
-      <span class="eyebrow">Our Tutors</span>
-      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Vetted. Local. <span class="hl">Effective.</span></h1>
-      <p class="lead">Every Unbound tutor passes a background check, credential review, and live teaching evaluation before meeting a student.</p>
+      <span class="eyebrow">Tutor Portal</span>
+      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Tutor <span class="hl">login.</span></h1>
+      <p class="lead">For approved tutors only. Log in below with the credentials set up after your application was approved.</p>
     </div>
   </div>
 </div>
 
 <section>
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="kicker">The Team</span>
-      <h2>The Founders</h2>
-      <p></p>
+  <div class="wrap" style="max-width:460px;">
+    <form id="login-form" class="card rv" style="display:grid;gap:18px;">
+      <div id="login-msg" class="form-msg"></div>
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Email</label><input type="email" id="email" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Password</label><input type="password" id="password" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+      <button type="submit" id="login-btn" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Log In →</button>
+    </form>
+    <div class="card rv" style="margin-top:18px;padding:24px;text-align:center;">
+      <p style="color:var(--gray);font-size:.92rem;">Haven't applied yet? <a href="apply.html" style="color:var(--brass);font-weight:700;">Apply to Tutor</a> — tutor accounts are set up after your application and vetting are approved, not by signing up directly.</p>
     </div>
-
-    <div class="grid g3">
-
-      <!-- Ethan -->
-      <div class="card rv">
-        <div class="icon photo">
-          <img src="ethan.jpg" alt="Ethan Sims">
-        </div>
-
-        <h3>Ethan Sims</h3>
-
-        <p style="color:var(--brass);font-weight:700;font-size:.85rem;margin-bottom:8px;">
-          CEO
-        </p>
-      </div>
-
-      <!-- Toby -->
-      <div class="card rv">
-        <div class="icon photo">
-          <img src="toby.jpg" alt="Toby Phan">
-        </div>
-
-        <h3>Toby Phan</h3>
-
-        <p style="color:var(--brass);font-weight:700;font-size:.85rem;margin-bottom:8px;">
-          Co-Founder
-        </p>
-      </div>
-
-      <!-- Lam -->
-      <div class="card rv">
-        <div class="icon photo">
-          <img src="lam.jpg" alt="Lam Duong">
-        </div>
-
-        <h3>Lam Duong</h3>
-
-        <p style="color:var(--brass);font-weight:700;font-size:.85rem;margin-bottom:8px;">
-          Co-Founder
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<section style="padding-top:0;">
-  <div class="wrap">
-    <div class="band rv">
-      <h2>Want to <span class="hl">tutor</span> with us?</h2>
-      <p>We're growing our Houston network. Strong teachers with verified subject expertise, we'd love to hear from you.</p>
-      <a href="apply.html" class="btn btn-gold">Apply to Tutor →</a>
-      <p style="margin-top:16px;font-size:.9rem;color:#93B0A0;">Already an approved tutor? <a href="tutor-login.html" style="color:var(--gold-bright);font-weight:700;">Log in here</a></p>
-    </div>
+    <p style="font-size:.9rem;text-align:center;color:var(--gray);margin-top:18px;">Looking for a tutor for your student instead? <a href="login.html" style="color:var(--brass);font-weight:700;">Family login</a></p>
   </div>
 </section>
 
@@ -172,6 +113,31 @@
   </div>
 </footer>
 
+<script src="supabase.js"></script>
+<script src="auth.js"></script>
 <script src="script.js"></script>
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('login-msg');
+  const btn = document.getElementById('login-btn');
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  btn.disabled = true;
+  btn.textContent = 'Logging in…';
+
+  const { error } = await authSignIn(email, password);
+
+  btn.disabled = false;
+  btn.textContent = 'Log In →';
+
+  if (error) {
+    showMsg(msg, error.message, 'error');
+    return;
+  }
+  window.location.href = 'account.html';
+});
+</script>
 </body>
 </html>
