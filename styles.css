@@ -154,6 +154,7 @@ footer ul { list-style:none; }
 footer li { margin-bottom:10px; }
 footer a { text-decoration:none; font-size:0.92rem; transition:color .15s; }
 footer a:hover { color:var(--gold-bright); }
+.social-links { display:flex; gap:14px; margin-top:16px; }
 .foot-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:26px; font-size:0.84rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
 
 /* reveal on scroll */
