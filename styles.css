@@ -26,7 +26,7 @@ a { color:inherit; }
 }
 
 /* ---------- NAV ---------- */
-header { position:sticky; top:0; z-index:100; background:rgba(15,42,30,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.07); }
+header { position:sticky; top:0; z-index:100; background:var(--ink); border-bottom:1px solid rgba(255,255,255,0.07); }
 .nav { display:flex; align-items:center; justify-content:space-between; max-width:1140px; margin:0 auto; padding:18px 28px; }
 .logo { display:flex; align-items:center; gap:10px; font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.05rem; color:#fff; text-decoration:none; letter-spacing:-0.02em; }
 .logo-mark { width:72px; height:72px; display:block; flex-shrink:0; object-fit:cover; border-radius:10px; }
