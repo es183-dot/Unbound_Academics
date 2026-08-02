@@ -5,25 +5,14 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://formspree.io; connect-src 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login | Unbound Academics</title>
-<meta name="description" content="Log in to your Unbound Academics parent or tutor account.">
-<meta name="robots" content="noindex,follow">
+<title>My Account | Unbound Academics</title>
+<meta name="description" content="Your Unbound Academics account.">
+<meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="canonical" href="https://unboundacademics.com/login.html">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://unboundacademics.com/"},
-    {"@type": "ListItem", "position": 2, "name": "Login / Signup", "item": "https://unboundacademics.com/login.html"}
-  ]
-}
-</script>
 </head>
 <body>
 
@@ -37,32 +26,36 @@
       <li><a href="how-it-works.html">How It Works</a></li>
       <li><a href="pricing.html">Pricing</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="login.html" class="nav-cta">Login / Signup</a></li>
+      <li><button id="logout-btn" class="nav-cta" style="border:none;cursor:pointer;font:inherit;display:none;">Log Out</button></li>
     </ul>
   </nav>
 </header>
 
-<div class="hero" style="padding:84px 0 96px;">
+<div id="loading-state" class="hero" style="padding:84px 0 96px;">
   <div class="wrap" style="grid-template-columns:1fr;">
     <div>
-      <span class="eyebrow">Accounts</span>
-      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Welcome <span class="hl">back.</span></h1>
-      <p class="lead">Log in to your parent or tutor account.</p>
+      <span class="eyebrow">Account</span>
+      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Loading<span class="hl">…</span></h1>
     </div>
   </div>
 </div>
 
-<section>
-  <div class="wrap" style="max-width:460px;">
-    <form id="login-form" class="card rv" style="display:grid;gap:18px;">
-      <div id="login-msg" class="form-msg"></div>
-      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Email</label><input type="email" id="email" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
-      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Password</label><input type="password" id="password" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
-      <button type="submit" id="login-btn" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Log In →</button>
-      <p style="font-size:.9rem;text-align:center;color:var(--gray);">New here? <a href="signup.html" style="color:var(--brass);font-weight:700;">Create an account</a></p>
-    </form>
-    <div class="card rv" style="margin-top:18px;padding:24px;text-align:center;">
-      <p style="color:var(--gray);font-size:.92rem;">Not ready for an account? <a href="contact.html" style="color:var(--brass);font-weight:700;">Book a free consultation</a> instead — no login needed.</p>
+<div id="account-state" class="hero" style="padding:84px 0 96px;display:none;">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow" id="role-badge">Account</span>
+      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Welcome, <span class="hl" id="welcome-name">there.</span></h1>
+      <p class="lead" id="welcome-sub"></p>
+    </div>
+  </div>
+</div>
+
+<section id="account-body" style="display:none;text-align:center;">
+  <div class="wrap" style="max-width:600px;">
+    <div class="card rv" style="padding:44px;">
+      <h3 style="margin-bottom:14px;">You're logged in</h3>
+      <p style="color:var(--gray);margin-bottom:28px;">This is a placeholder for now — session history, progress reports, and scheduling tools will live here next.</p>
+      <button id="logout-btn-2" class="btn btn-ghost" style="color:var(--ink);border-color:var(--line);justify-content:center;border:1.5px solid var(--line);cursor:pointer;font:inherit;font-weight:700;">Log Out</button>
     </div>
   </div>
 </section>
@@ -117,27 +110,32 @@
 <script src="auth.js"></script>
 <script src="script.js"></script>
 <script>
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const msg = document.getElementById('login-msg');
-  const btn = document.getElementById('login-btn');
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
+(async () => {
+  const profile = await getCurrentProfile();
 
-  btn.disabled = true;
-  btn.textContent = 'Logging in…';
-
-  const { error } = await authSignIn(email, password);
-
-  btn.disabled = false;
-  btn.textContent = 'Log In →';
-
-  if (error) {
-    showMsg(msg, error.message, 'error');
+  if (!profile) {
+    window.location.href = 'login.html';
     return;
   }
-  window.location.href = 'account.html';
-});
+
+  document.getElementById('loading-state').style.display = 'none';
+  document.getElementById('account-state').style.display = 'block';
+  document.getElementById('account-body').style.display = 'block';
+
+  const roleLabel = profile.role === 'tutor' ? 'Tutor Account' : 'Parent / Client Account';
+  document.getElementById('role-badge').textContent = roleLabel;
+  document.getElementById('welcome-name').textContent = (profile.full_name || profile.email) + '.';
+  document.getElementById('welcome-sub').textContent = 'Logged in as ' + roleLabel.toLowerCase() + ' (' + profile.email + ').';
+
+  const logoutBtn = document.getElementById('logout-btn');
+  logoutBtn.style.display = 'inline-flex';
+  const doLogout = async () => {
+    await authSignOut();
+    window.location.href = 'index.html';
+  };
+  logoutBtn.addEventListener('click', doLogout);
+  document.getElementById('logout-btn-2').addEventListener('click', doLogout);
+})();
 </script>
 </body>
 </html>

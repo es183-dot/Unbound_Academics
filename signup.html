@@ -5,13 +5,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://formspree.io; connect-src 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login | Unbound Academics</title>
-<meta name="description" content="Log in to your Unbound Academics parent or tutor account.">
+<title>Sign Up | Unbound Academics</title>
+<meta name="description" content="Create a parent or tutor account with Unbound Academics.">
 <meta name="robots" content="noindex,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="canonical" href="https://unboundacademics.com/login.html">
+<link rel="canonical" href="https://unboundacademics.com/signup.html">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">
@@ -20,7 +20,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://unboundacademics.com/"},
-    {"@type": "ListItem", "position": 2, "name": "Login / Signup", "item": "https://unboundacademics.com/login.html"}
+    {"@type": "ListItem", "position": 2, "name": "Sign Up", "item": "https://unboundacademics.com/signup.html"}
   ]
 }
 </script>
@@ -45,25 +45,41 @@
 <div class="hero" style="padding:84px 0 96px;">
   <div class="wrap" style="grid-template-columns:1fr;">
     <div>
-      <span class="eyebrow">Accounts</span>
-      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Welcome <span class="hl">back.</span></h1>
-      <p class="lead">Log in to your parent or tutor account.</p>
+      <span class="eyebrow">Create Account</span>
+      <h1 style="font-size:clamp(2.4rem,4.8vw,3.6rem);">Join <span class="hl">Unbound Academics.</span></h1>
+      <p class="lead">Set up your account as a parent looking for a tutor, or a tutor looking to teach.</p>
     </div>
   </div>
 </div>
 
 <section>
-  <div class="wrap" style="max-width:460px;">
-    <form id="login-form" class="card rv" style="display:grid;gap:18px;">
-      <div id="login-msg" class="form-msg"></div>
+  <div class="wrap" style="max-width:520px;">
+    <form id="signup-form" class="card rv" style="display:grid;gap:18px;">
+      <div id="signup-msg" class="form-msg"></div>
+
+      <div>
+        <label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:10px;">I am a:</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <label class="role-option">
+            <input type="radio" name="role" value="client" checked style="display:none;">
+            <span class="role-title">Parent / Client</span>
+            <span class="role-sub">Looking for a tutor for my student</span>
+          </label>
+          <label class="role-option">
+            <input type="radio" name="role" value="tutor" style="display:none;">
+            <span class="role-title">Tutor</span>
+            <span class="role-sub">I want to teach with Unbound</span>
+          </label>
+        </div>
+      </div>
+
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Full name</label><input type="text" id="full_name" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
       <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Email</label><input type="email" id="email" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
-      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Password</label><input type="password" id="password" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
-      <button type="submit" id="login-btn" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Log In →</button>
-      <p style="font-size:.9rem;text-align:center;color:var(--gray);">New here? <a href="signup.html" style="color:var(--brass);font-weight:700;">Create an account</a></p>
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Password</label><input type="password" id="password" required minlength="6" style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+
+      <button type="submit" id="signup-btn" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Create Account →</button>
+      <p style="font-size:.9rem;text-align:center;color:var(--gray);">Already have an account? <a href="login.html" style="color:var(--brass);font-weight:700;">Log in</a></p>
     </form>
-    <div class="card rv" style="margin-top:18px;padding:24px;text-align:center;">
-      <p style="color:var(--gray);font-size:.92rem;">Not ready for an account? <a href="contact.html" style="color:var(--brass);font-weight:700;">Book a free consultation</a> instead — no login needed.</p>
-    </div>
   </div>
 </section>
 
@@ -117,26 +133,33 @@
 <script src="auth.js"></script>
 <script src="script.js"></script>
 <script>
-document.getElementById('login-form').addEventListener('submit', async (e) => {
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const msg = document.getElementById('login-msg');
-  const btn = document.getElementById('login-btn');
+  const msg = document.getElementById('signup-msg');
+  const btn = document.getElementById('signup-btn');
+  const fullName = document.getElementById('full_name').value.trim();
+  const role = document.querySelector('input[name="role"]:checked').value;
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
 
   btn.disabled = true;
-  btn.textContent = 'Logging in…';
+  btn.textContent = 'Creating account…';
 
-  const { error } = await authSignIn(email, password);
+  const { data, error } = await authSignUp(fullName, role, email, password);
 
   btn.disabled = false;
-  btn.textContent = 'Log In →';
+  btn.textContent = 'Create Account →';
 
   if (error) {
     showMsg(msg, error.message, 'error');
     return;
   }
-  window.location.href = 'account.html';
+
+  if (data && data.session) {
+    window.location.href = 'account.html';
+  } else {
+    showMsg(msg, 'Account created — check your email to confirm, then log in.', 'success');
+  }
 });
 </script>
 </body>

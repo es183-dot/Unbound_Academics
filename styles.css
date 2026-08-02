@@ -182,3 +182,13 @@ footer a:hover { color:var(--gold-bright); }
   .rv { opacity:1; transform:none; transition:none; }
   .card:hover,.btn:hover { transform:none; }
 }
+
+/* ---------- AUTH ---------- */
+.role-option { display:block; padding:16px; border:1.5px solid var(--line); border-radius:10px; cursor:pointer; transition:border-color .15s, background .15s; }
+.role-option:has(input:checked) { border-color:var(--gold); background:rgba(201,166,72,.08); }
+.role-option .role-title { font-weight:700; font-size:.95rem; display:block; }
+.role-option .role-sub { display:block; font-size:.82rem; color:var(--gray); font-weight:400; margin-top:4px; }
+.form-msg { border-radius:10px; padding:13px 16px; font-size:.9rem; font-weight:600; display:none; }
+.form-msg.show { display:block; }
+.form-msg.error { background:rgba(217,119,87,.1); border:1px solid rgba(217,119,87,.3); color:#B54B2E; }
+.form-msg.success { background:rgba(127,184,138,.12); border:1px solid rgba(127,184,138,.35); color:#3D7A4A; }
