@@ -55,6 +55,7 @@
     <div class="card rv" style="padding:44px;">
       <h3 style="margin-bottom:14px;">You're logged in</h3>
       <p style="color:var(--gray);margin-bottom:28px;">This is a placeholder for now — session history, progress reports, and scheduling tools will live here next.</p>
+      <div id="admin-link" style="display:none;margin-bottom:16px;"><a href="admin.html" class="btn btn-gold" style="justify-content:center;">Admin Panel →</a></div>
       <button id="logout-btn-2" class="btn btn-ghost" style="color:var(--ink);border-color:var(--line);justify-content:center;border:1.5px solid var(--line);cursor:pointer;font:inherit;font-weight:700;">Log Out</button>
     </div>
   </div>
@@ -122,10 +123,15 @@
   document.getElementById('account-state').style.display = 'block';
   document.getElementById('account-body').style.display = 'block';
 
-  const roleLabel = profile.role === 'tutor' ? 'Tutor Account' : 'Parent / Client Account';
+  const roleLabels = { tutor: 'Tutor Account', admin: 'Admin Account', client: 'Parent / Client Account' };
+  const roleLabel = roleLabels[profile.role] || roleLabels.client;
   document.getElementById('role-badge').textContent = roleLabel;
   document.getElementById('welcome-name').textContent = (profile.full_name || profile.email) + '.';
   document.getElementById('welcome-sub').textContent = 'Logged in as ' + roleLabel.toLowerCase() + ' (' + profile.email + ').';
+
+  if (profile.role === 'admin') {
+    document.getElementById('admin-link').style.display = 'block';
+  }
 
   const logoutBtn = document.getElementById('logout-btn');
   logoutBtn.style.display = 'inline-flex';

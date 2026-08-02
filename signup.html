@@ -124,14 +124,13 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   const msg = document.getElementById('signup-msg');
   const btn = document.getElementById('signup-btn');
   const fullName = document.getElementById('full_name').value.trim();
-  const role = 'client';
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
 
   btn.disabled = true;
   btn.textContent = 'Creating account…';
 
-  const { data, error } = await authSignUp(fullName, role, email, password);
+  const { data, error } = await authSignUp(fullName, email, password);
 
   btn.disabled = false;
   btn.textContent = 'Create Account →';

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://formspree.io; connect-src 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Unbound Academics</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo"><img src="logo.jpg" alt="" class="logo-mark">Unbound <em>Academics</em></a>
+    <ul class="nav-links">
+      <li><a href="account.html">My Account</a></li>
+      <li><button id="logout-btn" class="nav-cta" style="border:none;cursor:pointer;font:inherit;">Log Out</button></li>
+    </ul>
+  </nav>
+</header>
+
+<div id="checking-state" class="hero" style="padding:64px 0;">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div><h1 style="font-size:1.8rem;">Checking access<span class="hl">…</span></h1></div>
+  </div>
+</div>
+
+<div id="admin-state" style="display:none;">
+  <div class="hero" style="padding:64px 0 48px;">
+    <div class="wrap" style="grid-template-columns:1fr;">
+      <div>
+        <span class="eyebrow">Admin</span>
+        <h1 style="font-size:clamp(2rem,4vw,2.8rem);">All <span class="hl">accounts.</span></h1>
+        <p class="lead">Promote an approved tutor's account from here once they've cleared your vetting process.</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div id="admin-msg" class="form-msg" style="margin-bottom:18px;"></div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 2px 6px rgba(15,42,30,.04);">
+          <thead>
+            <tr style="background:var(--paper);text-align:left;">
+              <th style="padding:14px 16px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gray);">Name</th>
+              <th style="padding:14px 16px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gray);">Email</th>
+              <th style="padding:14px 16px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gray);">Joined</th>
+              <th style="padding:14px 16px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gray);">Role</th>
+              <th style="padding:14px 16px;"></th>
+            </tr>
+          </thead>
+          <tbody id="profiles-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="supabase.js"></script>
+<script src="auth.js"></script>
+<script>
+(async () => {
+  const profile = await getCurrentProfile();
+
+  if (!profile || profile.role !== 'admin') {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  document.getElementById('checking-state').style.display = 'none';
+  document.getElementById('admin-state').style.display = 'block';
+
+  document.getElementById('logout-btn').addEventListener('click', async () => {
+    await authSignOut();
+    window.location.href = 'index.html';
+  });
+
+  async function render() {
+    const rows = await getAllProfiles();
+    const tbody = document.getElementById('profiles-body');
+    tbody.innerHTML = '';
+    rows.forEach((row) => {
+      const tr = document.createElement('tr');
+      tr.style.borderTop = '1px solid var(--line)';
+
+      const joined = row.created_at ? new Date(row.created_at).toLocaleDateString() : '';
+
+      tr.innerHTML =
+        '<td style="padding:14px 16px;">' + (row.full_name || '') + '</td>' +
+        '<td style="padding:14px 16px;">' + row.email + '</td>' +
+        '<td style="padding:14px 16px;">' + joined + '</td>' +
+        '<td style="padding:14px 16px;">' +
+          '<select data-id="' + row.id + '" style="padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff;">' +
+            '<option value="client"' + (row.role === 'client' ? ' selected' : '') + '>Client</option>' +
+            '<option value="tutor"' + (row.role === 'tutor' ? ' selected' : '') + '>Tutor</option>' +
+            '<option value="admin"' + (row.role === 'admin' ? ' selected' : '') + '>Admin</option>' +
+          '</select>' +
+        '</td>' +
+        '<td style="padding:14px 16px;"><button class="btn btn-ghost save-role-btn" data-id="' + row.id + '" style="color:var(--ink);border-color:var(--line);cursor:pointer;font:inherit;padding:8px 16px;">Save</button></td>';
+
+      tbody.appendChild(tr);
+    });
+
+    document.querySelectorAll('.save-role-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-id');
+        const select = document.querySelector('select[data-id="' + id + '"]');
+        const msg = document.getElementById('admin-msg');
+        const { error } = await setProfileRole(id, select.value);
+        if (error) {
+          showMsg(msg, error.message, 'error');
+        } else {
+          showMsg(msg, 'Updated.', 'success');
+        }
+      });
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

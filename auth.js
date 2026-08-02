@@ -14,12 +14,14 @@ function showMsg(el, text, type) {
   el.className = 'form-msg show ' + type;
 }
 
-async function authSignUp(fullName, role, email, password) {
+async function authSignUp(fullName, email, password) {
   if (!sb) return { error: { message: 'Accounts aren\'t fully set up yet - check back soon.' } };
+  // Role is never taken from the client - the database trigger always
+  // starts new accounts as 'client', regardless of what's sent here.
   return sb.auth.signUp({
     email: email,
     password: password,
-    options: { data: { full_name: fullName, role: role } }
+    options: { data: { full_name: fullName } }
   });
 }
 
@@ -43,4 +45,24 @@ async function getCurrentProfile() {
     .eq('id', session.user.id)
     .single();
   return profile ? { full_name: profile.full_name, role: profile.role, email: session.user.email } : null;
+}
+
+// Admin-only from here down. These calls only ever return data for
+// accounts with role = 'admin' - enforced by Supabase's Row Level
+// Security policies on the profiles table, not by anything in this
+// file. A non-admin calling these gets back only their own row (or
+// a failed update), no matter what the page around it does.
+
+async function getAllProfiles() {
+  if (!sb) return [];
+  const { data } = await sb
+    .from('profiles')
+    .select('id, full_name, email, role, created_at')
+    .order('created_at', { ascending: false });
+  return data || [];
+}
+
+async function setProfileRole(userId, newRole) {
+  if (!sb) return { error: { message: 'Accounts aren\'t fully set up yet - check back soon.' } };
+  return sb.from('profiles').update({ role: newRole }).eq('id', userId);
 }
