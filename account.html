@@ -122,33 +122,37 @@
 <script src="auth.js"></script>
 <script src="script.js"></script>
 <script>
-(async () => {
-  let profile;
-  try {
-    profile = await getCurrentProfile();
-  } catch (err) {
-    document.getElementById('loading-state').innerHTML =
-      '<div class="wrap" style="grid-template-columns:1fr;"><div><span class="eyebrow">Account</span><h1 style="font-size:clamp(2rem,4vw,2.8rem);">Something went <span class="hl">wrong.</span></h1>' +
-      '<p class="lead">Couldn\'t load your account just now. <a href="login.html" style="color:var(--gold-bright);font-weight:700;">Try logging in again</a>, or refresh the page.</p></div></div>';
-    return;
-  }
+function showLoadError(message) {
+  document.getElementById('loading-state').innerHTML =
+    '<div class="wrap" style="grid-template-columns:1fr;"><div><span class="eyebrow">Account</span><h1 style="font-size:clamp(2rem,4vw,2.8rem);">Something went <span class="hl">wrong.</span></h1>' +
+    '<p class="lead">' + message + ' <a href="login.html" style="color:var(--gold-bright);font-weight:700;">Try logging in again</a>, or refresh the page.</p></div></div>';
+}
 
-  if (!profile) {
-    // No profile AND no active session at all means genuinely not
-    // logged in - the normal case, quietly send to login. (getCurrentProfile
-    // self-heals a missing profile row when a session does exist, so
-    // reaching here with a real session should now be rare.)
-    const { data: { session } } = await sb.auth.getSession();
-    if (!session) {
-      window.location.href = 'login.html';
+(async () => {
+  try {
+    const profile = await getCurrentProfile();
+
+    if (!profile) {
+      // No profile AND no active session at all means genuinely not
+      // logged in - the normal case, quietly send to login. (getCurrentProfile
+      // self-heals a missing profile row when a session does exist, so
+      // reaching here with a real session should now be rare.)
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
+      showLoadError('You\'re logged in, but your account details couldn\'t be loaded.');
       return;
     }
-    document.getElementById('loading-state').innerHTML =
-      '<div class="wrap" style="grid-template-columns:1fr;"><div><span class="eyebrow">Account</span><h1 style="font-size:clamp(2rem,4vw,2.8rem);">Something went <span class="hl">wrong.</span></h1>' +
-      '<p class="lead">You\'re logged in, but your account details couldn\'t be loaded. <a href="login.html" style="color:var(--gold-bright);font-weight:700;">Try logging in again</a>, or refresh the page.</p></div></div>';
-    return;
-  }
 
+    renderAccount(profile);
+  } catch (err) {
+    showLoadError('Couldn\'t load your account just now.');
+  }
+})();
+
+function renderAccount(profile) {
   document.getElementById('loading-state').style.display = 'none';
   document.getElementById('account-state').style.display = 'block';
   document.getElementById('account-body').style.display = 'block';
@@ -194,7 +198,7 @@
     document.getElementById('password-form').reset();
     showMsg(pwMsg, 'Password updated.', 'success');
   });
-})();
+}
 </script>
 </body>
 </html>

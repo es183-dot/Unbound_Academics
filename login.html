@@ -129,16 +129,19 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   btn.disabled = true;
   btn.textContent = 'Logging in…';
 
-  const { error } = await authSignIn(email, password);
-
-  btn.disabled = false;
-  btn.textContent = 'Log In →';
-
-  if (error) {
-    showMsg(msg, friendlyError(error), 'error');
-    return;
+  try {
+    const { error } = await authSignIn(email, password);
+    if (error) {
+      showMsg(msg, friendlyError(error), 'error');
+      return;
+    }
+    window.location.href = 'account.html';
+  } catch (err) {
+    showMsg(msg, 'Something went wrong logging in. Please try again.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Log In →';
   }
-  window.location.href = 'account.html';
 });
 </script>
 </body>
