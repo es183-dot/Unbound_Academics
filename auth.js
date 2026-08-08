@@ -1,8 +1,9 @@
-// Fill these in once your Supabase project exists (Project Settings -> API).
-// SUPABASE_ANON_KEY is the public "anon" key - safe for client-side code.
-// Never put the "service_role" key here or anywhere in this repo.
+// Project Settings -> API. SUPABASE_ANON_KEY holds the "publishable" key -
+// safe for client-side code. Never put the "secret" key (formerly called
+// "service_role") here or anywhere in this repo - it bypasses every
+// Row Level Security rule on the database.
 const SUPABASE_URL = 'https://dqkxqncuvahkmgtlsyrv.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_ANON_KEY = 'sb_publishable_y912K22_A7VYyo6ibnNrlg_O7EDfJ1P';
 
 const isConfigured = SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL';
 const sb = isConfigured && window.supabase
