@@ -53,11 +53,21 @@
 
 <section id="account-body" style="display:none;text-align:center;">
   <div class="wrap" style="max-width:600px;">
-    <div class="card rv" style="padding:44px;">
+    <div class="card rv" style="padding:44px;margin-bottom:20px;">
       <h3 style="margin-bottom:14px;">You're logged in</h3>
       <p style="color:var(--gray);margin-bottom:28px;">This is a placeholder for now — session history, progress reports, and scheduling tools will live here next.</p>
       <div id="admin-link" style="display:none;margin-bottom:16px;"><a href="admin.html" class="btn btn-gold" style="justify-content:center;">Admin Panel →</a></div>
       <button id="logout-btn-2" class="btn btn-ghost" style="color:var(--ink);border-color:var(--line);justify-content:center;border:1.5px solid var(--line);cursor:pointer;font:inherit;font-weight:700;">Log Out</button>
+    </div>
+
+    <div class="card rv" style="padding:44px;text-align:left;">
+      <h3 style="margin-bottom:18px;text-align:center;">Change password</h3>
+      <form id="password-form" style="display:grid;gap:16px;">
+        <div id="password-msg" class="form-msg"></div>
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Current password</label><input type="password" id="current_password" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+        <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">New password</label><input type="password" id="new_password" required minlength="8" style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"><p style="font-size:.8rem;color:var(--gray);margin-top:6px;">At least 8 characters.</p></div>
+        <button type="submit" id="password-btn" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Update Password →</button>
+      </form>
     </div>
   </div>
 </section>
@@ -142,6 +152,29 @@
   };
   logoutBtn.addEventListener('click', doLogout);
   document.getElementById('logout-btn-2').addEventListener('click', doLogout);
+
+  document.getElementById('password-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const pwMsg = document.getElementById('password-msg');
+    const pwBtn = document.getElementById('password-btn');
+    const currentPassword = document.getElementById('current_password').value;
+    const newPassword = document.getElementById('new_password').value;
+
+    pwBtn.disabled = true;
+    pwBtn.textContent = 'Updating…';
+
+    const { error } = await changePasswordWithVerification(profile.email, currentPassword, newPassword);
+
+    pwBtn.disabled = false;
+    pwBtn.textContent = 'Update Password →';
+
+    if (error) {
+      showMsg(pwMsg, friendlyError(error), 'error');
+      return;
+    }
+    document.getElementById('password-form').reset();
+    showMsg(pwMsg, 'Password updated.', 'success');
+  });
 })();
 </script>
 </body>
