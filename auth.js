@@ -109,11 +109,30 @@ async function getCurrentProfile() {
   if (!sb) return null;
   const { data: { session } } = await sb.auth.getSession();
   if (!session) return null;
-  const { data: profile } = await sb
+
+  // maybeSingle (not single) so a missing row comes back as null
+  // instead of throwing - a real login shouldn't silently fail just
+  // because the profile row is missing.
+  let { data: profile } = await sb
     .from('profiles')
     .select('full_name, role')
     .eq('id', session.user.id)
-    .single();
+    .maybeSingle();
+
+  if (!profile) {
+    // Self-heal: this account has a valid login but somehow never got
+    // a profiles row (e.g. signed up before the trigger existed).
+    // Without this, login would succeed but account.html would find
+    // no profile and silently bounce back to the login page.
+    const fallbackName = (session.user.user_metadata && session.user.user_metadata.full_name) || '';
+    const inserted = await sb
+      .from('profiles')
+      .insert({ id: session.user.id, full_name: fallbackName, email: session.user.email, role: 'client' })
+      .select('full_name, role')
+      .maybeSingle();
+    profile = inserted.data;
+  }
+
   return profile ? { full_name: profile.full_name, role: profile.role, email: session.user.email } : null;
 }
 
