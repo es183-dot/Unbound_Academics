@@ -62,7 +62,7 @@
 
       <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Full name</label><input type="text" id="full_name" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
       <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Email</label><input type="email" id="email" required style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
-      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Password</label><input type="password" id="password" required minlength="6" style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"></div>
+      <div><label style="font-weight:700;font-size:.9rem;display:block;margin-bottom:6px;">Password</label><input type="password" id="password" required minlength="8" style="width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;"><p style="font-size:.8rem;color:var(--gray);margin-top:6px;">At least 8 characters.</p></div>
 
       <button type="submit" id="signup-btn" class="btn btn-gold" style="border:none;cursor:pointer;font:inherit;font-weight:800;justify-content:center;">Create Account →</button>
       <p style="font-size:.9rem;text-align:center;color:var(--gray);">Already have an account? <a href="login.html" style="color:var(--brass);font-weight:700;">Log in</a></p>
@@ -137,7 +137,7 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   btn.textContent = 'Create Account →';
 
   if (error) {
-    showMsg(msg, error.message, 'error');
+    showMsg(msg, friendlyError(error), 'error');
     return;
   }
 

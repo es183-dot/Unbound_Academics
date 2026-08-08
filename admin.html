@@ -115,7 +115,7 @@
         const msg = document.getElementById('admin-msg');
         const { error } = await setProfileRole(id, select.value);
         if (error) {
-          showMsg(msg, error.message, 'error');
+          showMsg(msg, friendlyError(error), 'error');
         } else {
           showMsg(msg, 'Updated.', 'success');
         }

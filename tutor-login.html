@@ -134,7 +134,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   btn.textContent = 'Log In →';
 
   if (error) {
-    showMsg(msg, error.message, 'error');
+    showMsg(msg, friendlyError(error), 'error');
     return;
   }
   window.location.href = 'account.html';

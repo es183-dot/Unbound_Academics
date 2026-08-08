@@ -15,6 +15,32 @@ function showMsg(el, text, type) {
   el.className = 'form-msg show ' + type;
 }
 
+// Turns Supabase's raw error text into a clear, specific message -
+// and deliberately does NOT reveal whether an email exists in the
+// system (e.g. "wrong password" vs "no account found" would let an
+// attacker enumerate real accounts). "Incorrect email or password"
+// covers both cases on purpose.
+function friendlyError(error) {
+  if (!error) return null;
+  const msg = (error.message || '').toLowerCase();
+  if (msg.includes('invalid login credentials')) {
+    return 'Incorrect email or password. Please check both and try again.';
+  }
+  if (msg.includes('email not confirmed')) {
+    return 'Please confirm your email first - check your inbox for a confirmation link, then log in.';
+  }
+  if (msg.includes('user already registered')) {
+    return 'An account with this email already exists. Try logging in instead.';
+  }
+  if (msg.includes('rate limit')) {
+    return 'Too many attempts. Please wait a minute and try again.';
+  }
+  if (msg.includes('password') && msg.includes('6 characters')) {
+    return 'Password must be at least 8 characters.';
+  }
+  return error.message;
+}
+
 async function authSignUp(fullName, email, password) {
   if (!sb) return { error: { message: 'Accounts aren\'t fully set up yet - check back soon.' } };
   // Role is never taken from the client - the database trigger always
